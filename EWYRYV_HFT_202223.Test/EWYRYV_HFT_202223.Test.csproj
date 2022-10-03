@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EWYRYV_HFT_2021222.Logic\EWYRYV_HFT_2021222.Logic.csproj" />
+    <ProjectReference Include="..\EWYRYV_HFT_2021222.Logic\EWYRYV_HFT_202223.Logic.csproj" />
     <ProjectReference Include="..\EWYRYV_HFT_2021222.Models\EWYRYV_HFT_202223.Models.csproj" />
     <ProjectReference Include="..\EWYRYV_HFT_202223.Repository\EWYRYV_HFT_202223.Repository.csproj" />
   </ItemGroup>
