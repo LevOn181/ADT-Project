@@ -19,10 +19,12 @@ namespace EWYRYV_HFT_202223.Models
         [Required]
         [StringLength(240)]
         public string Name { get; set; }
-
+        
         [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
 
+        [NotMapped]
+        public virtual Manager Manager { get; set; }
         public Team()
         {
 

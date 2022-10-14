@@ -10,6 +10,7 @@ namespace EWYRYV_HFT_202223.Repository
 {
     public class TeamDbContext : DbContext
     {
+        public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
@@ -43,6 +44,30 @@ namespace EWYRYV_HFT_202223.Repository
                     .WithMany(team => team.Players)
                     .HasForeignKey(player => player.TeamId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Manager>(entity =>
+            {
+                entity.HasOne(manager => manager.Team)
+                    .WithOne(team => team.Manager)
+                    .HasForeignKey<Team>(manager => manager.TeamId);
+                    //.OnDelete(DeleteBehavior.ClientSetNull);
+            });
+
+            modelBuilder.Entity<Manager>().HasData(new Manager[]
+            {
+                new Manager("1#Michael Boris#German#12"),
+                new Manager("2#Tam Courts#Scottish#5"),
+                new Manager("3#Ferenc Horváth#Hungarian#6"),
+                new Manager("4#Attila Kutor#Hungarian#1"),
+                new Manager("5#Attila Supka#Hungarian#8"),
+                new Manager("6#Stanislav Cherchesov#Ossetian#2"),
+                new Manager("7#Ferenc Lajos#Hungarian#11"),
+                new Manager("8#Zsolt Hornyák#Hungarian#3"),
+                new Manager("9#Miloš Kruščić#Serbian#10"),
+                new Manager("10#Tamás Feczkó#Hungarian#9"),
+                new Manager("11#Zsolt Haraszti#Hungarian#7"),
+                new Manager("12#Szabolcs Huszti#Hungarian#4"),
             });
 
             modelBuilder.Entity<Player>().HasData(new Player[]

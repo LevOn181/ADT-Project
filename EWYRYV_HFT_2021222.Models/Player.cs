@@ -36,6 +36,7 @@ namespace EWYRYV_HFT_202223.Models
 
         [NotMapped]
         public virtual Team Team { get; set; }
+
         [NotMapped]
         public virtual Role Role { get; set; }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EWYRYV_HFT_202223.Models
 {
     [Table("manager")]
-    class Manager
+    public class Manager
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -23,6 +23,7 @@ namespace EWYRYV_HFT_202223.Models
 
         [Required]
         [Range(1,12)]
+        [ForeignKey(nameof(Team))]
         public int TeamId { get; set; }
 
         [NotMapped]
