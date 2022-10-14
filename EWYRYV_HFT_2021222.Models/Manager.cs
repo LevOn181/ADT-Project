@@ -8,31 +8,38 @@ using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Models
 {
-    [Table("team")]
-    public class Team
+    [Table("manager")]
+    class Manager
     {
-
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TeamId { get; set; }
+        public int ManagerId { get; set; }
         
         [Required]
-        [StringLength(240)]
+        [StringLength(50)]
         public string Name { get; set; }
 
-        [NotMapped]
-        public virtual ICollection<Player> Players { get; set; }
+        public string? Nationality { get; set; }
 
-        public Team()
+        [Required]
+        [Range(1,12)]
+        public int TeamId { get; set; }
+
+        [NotMapped]
+        public virtual Team Team { get; set; }
+
+        public Manager()
         {
 
         }
 
-        public Team(string line)
+        public Manager(string line)
         {
             string[] split = line.Split("#");
-            TeamId = int.Parse(split[0]);
+            ManagerId = int.Parse(split[0]);
             Name = split[1];
+            Nationality = split[2];
+            TeamId = int.Parse(split[3]);
         }
 
     }

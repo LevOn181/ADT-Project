@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Models
 {
+    [Table("role")]
     public class Role
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleId { get; set; }
 
+        [Required]
         [StringLength(240)]
         public string Name { get; set; }
 
+        [NotMapped]
         public virtual ICollection<Player> Players { get; set; }
 
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Models
 {
+    [Table("player")]
     public class Player
     {
         [Key]
@@ -16,7 +17,7 @@ namespace EWYRYV_HFT_202223.Models
         public int PlayerId { get; set; }
 
         [Range(1, 99)]
-        public int KitNumber { get; set; }
+        public int? KitNumber { get; set; }
 
         [Required]
         [Range(1, 12)]
@@ -29,12 +30,13 @@ namespace EWYRYV_HFT_202223.Models
 
         [Range(1, 13)]
         [ForeignKey(nameof(Role))]
-        public int RoleId { get; set; }
-        public DateTime BirthDate { get; set; }
-        public int Value { get; set; }
+        public int? RoleId { get; set; }
+        public string? BirthDate { get; set; }
+        public int? Value { get; set; }
 
-
+        [NotMapped]
         public virtual Team Team { get; set; }
+        [NotMapped]
         public virtual Role Role { get; set; }
 
 
@@ -49,9 +51,9 @@ namespace EWYRYV_HFT_202223.Models
             PlayerId = int.Parse(split[0]);
             KitNumber = int.Parse(split[1]);
             TeamId = int.Parse(split[2]);
-            Name = split[3];
-            RoleId = int.Parse(split[4]);
-            BirthDate = DateTime.Parse(split[5]);
+            RoleId = int.Parse(split[3]);
+            Name = split[4];
+            BirthDate = split[5];
             Value = int.Parse(split[6]);
         }
     }

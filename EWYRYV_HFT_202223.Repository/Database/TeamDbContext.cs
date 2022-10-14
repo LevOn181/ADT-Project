@@ -10,12 +10,17 @@ namespace EWYRYV_HFT_202223.Repository
 {
     public class TeamDbContext : DbContext
     {
-        public DbSet<Team> Teams { get; set; }
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Player> Players { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
 
 
         public TeamDbContext()
+        {
+            this.Database.EnsureCreated();
+        }
+
+        public TeamDbContext(DbContextOptions<TeamDbContext> options) : base(options)
         {
             this.Database.EnsureCreated();
         }
