@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Models
@@ -27,6 +28,7 @@ namespace EWYRYV_HFT_202223.Models
         public int TeamId { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Team Team { get; set; }
 
         public Manager()

@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Models
@@ -35,11 +36,11 @@ namespace EWYRYV_HFT_202223.Models
         public int? Value { get; set; }
 
         [NotMapped]
-        public virtual Team Team { get; set; }
-
-        [NotMapped]
         public virtual Role Role { get; set; }
 
+        [NotMapped]
+        [JsonIgnore]
+        public virtual Team Team { get; set; }
 
         public Player()
         {

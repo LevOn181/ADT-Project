@@ -10,35 +10,35 @@ namespace EWYRYV_HFT_202223.Endpoint.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class TeamController : ControllerBase
+    public class ManagerController : ControllerBase
     {
-        ITeamLogic logic;
+        IManagerLogic logic;
 
-        public TeamController(ITeamLogic logic)
+        public ManagerController(IManagerLogic logic)
         {
             this.logic = logic;
         }
 
         [HttpGet]
-        public IEnumerable<Team> ReadAll()
+        public IEnumerable<Manager> ReadAll()
         {
             return this.logic.ReadAll();
         }
 
         [HttpGet("{id}")]
-        public Team Read(int id)
+        public Manager Read(int id)
         {
             return this.logic.Read(id);
         }
 
         [HttpPost]
-        public void Create([FromBody] Team value)
+        public void Create([FromBody] Manager value)
         {
             this.logic.Create(value);
         }
 
         [HttpPut]
-        public void Update([FromBody] Team value)
+        public void Update([FromBody] Manager value)
         {
             this.logic.Update(value);
         }
