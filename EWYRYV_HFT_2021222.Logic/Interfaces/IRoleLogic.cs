@@ -7,7 +7,7 @@ using EWYRYV_HFT_202223.Models;
 
 namespace EWYRYV_HFT_202223.Logic
 {
-    interface IRoleLogic
+    public interface IRoleLogic
     {
         void Create(Role item);
         void Delete(int id);

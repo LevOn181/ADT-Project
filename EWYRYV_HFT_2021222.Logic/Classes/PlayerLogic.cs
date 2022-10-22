@@ -27,6 +27,22 @@ namespace EWYRYV_HFT_202223.Logic
             this.repo.Delete(id);
         }
 
+        public int GetAverageAge()
+        {
+            throw new NotImplementedException();
+        }
+
+        public double? GetAveragePrice()
+        {
+            int? sum = 0;
+            foreach (var item in this.repo.ReadAll())
+            {
+                sum += item.Value;
+            }
+
+            return sum / this.repo.ReadAll().Count();
+        }
+
         public Player Read(int id)
         {
             return this.repo.Read(id);

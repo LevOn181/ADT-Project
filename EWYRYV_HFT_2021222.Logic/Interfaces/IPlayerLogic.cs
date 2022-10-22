@@ -7,12 +7,17 @@ using EWYRYV_HFT_202223.Models;
 
 namespace EWYRYV_HFT_202223.Logic
 {
-    interface IPlayerLogic
+    public interface IPlayerLogic
     {
+        // CRUD
         void Create(Player item);
         void Delete(int id);
         Player Read(int id);
         IQueryable<Player> ReadAll();
         void Update(Player item);
+
+        // OTHER
+        double? GetAveragePrice();
+        int GetAverageAge();
     }
 }

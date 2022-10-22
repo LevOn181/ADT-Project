@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Logic
 {
-    interface IManagerLogic
+    public interface IManagerLogic
     {
         void Create(Manager item);
         void Delete(int id);

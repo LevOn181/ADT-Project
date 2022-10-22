@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using EWYRYV_HFT_202223.Repository;
 using EWYRYV_HFT_202223.Models;
 
-namespace EWYRYV_HFT_202223.Logic.Classes
+namespace EWYRYV_HFT_202223.Logic
 {
-    class ManagerLogic : IManagerLogic
+    public class ManagerLogic : IManagerLogic
     {
         IRepository<Manager> repo;
         public ManagerLogic(IRepository<Manager> repo)
