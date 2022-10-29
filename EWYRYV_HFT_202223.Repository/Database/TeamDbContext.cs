@@ -13,7 +13,6 @@ namespace EWYRYV_HFT_202223.Repository
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Player> Players { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
 
 
         public TeamDbContext()
@@ -38,10 +37,10 @@ namespace EWYRYV_HFT_202223.Repository
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>(entity =>
+            modelBuilder.Entity<Team>(entity =>
             {
-                entity.HasOne(player => player.Team)
-                    .WithMany(team => team.Players)
+                entity.HasMany(team => team.Players)
+                    .WithOne(player => player.Team)
                     .HasForeignKey(player => player.TeamId)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
@@ -405,22 +404,6 @@ namespace EWYRYV_HFT_202223.Repository
                 new Team("10#Újpest FC"),
                 new Team("11#Balmazújváros FC"),
                 new Team("12#Videoton FC"),
-            });
-            modelBuilder.Entity<Role>().HasData(new Role[]
-            {
-                new Role("1#left back"),
-                new Role("2#right midfielder"),
-                new Role("3#left winger"),
-                new Role("4#defending midfielder"),
-                new Role("5#left midfielder"),
-                new Role("6#central midfielder"),
-                new Role("7#right winger"),
-                new Role("8#right back"),
-                new Role("9#goalkeeper"),
-                new Role("10#striker"),
-                new Role("11#center back"),
-                new Role("12#attacking midfielder"),
-                new Role("13#central forward"),
             });
         }
     }

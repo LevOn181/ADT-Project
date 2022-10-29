@@ -29,14 +29,9 @@ namespace EWYRYV_HFT_202223.Models
         [StringLength(240)]
         public string Name { get; set; }
 
-        [Range(1, 13)]
-        [ForeignKey(nameof(Role))]
         public int? RoleId { get; set; }
         public string? BirthDate { get; set; }
         public int? Value { get; set; }
-
-        [NotMapped]
-        public virtual Role Role { get; set; }
 
         [NotMapped]
         [JsonIgnore]

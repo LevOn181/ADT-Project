@@ -35,12 +35,10 @@ namespace EWYRYV_HFT_202223.Endpoint
             services.AddTransient<IRepository<Manager>, ManagerRepository>();
             services.AddTransient<IRepository<Team>, TeamRepository>();
             services.AddTransient<IRepository<Player>, PlayerRepository>();
-            services.AddTransient<IRepository<Role>, RoleRepository>();
 
             services.AddTransient<IManagerLogic, ManagerLogic>();
             services.AddTransient<ITeamLogic, TeamLogic>();
             services.AddTransient<IPlayerLogic, PlayerLogic>();
-            services.AddTransient<IRoleLogic, RoleLogic>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

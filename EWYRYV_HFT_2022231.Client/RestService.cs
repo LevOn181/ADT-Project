@@ -12,6 +12,12 @@ namespace EWYRYV_HFT_202223.Client
     {
         HttpClient client;
 
+        public RestService(string baseurl)
+        {
+            Init(baseurl);
+        }
+
+        
         public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
             bool isOk = false;
@@ -21,6 +27,7 @@ namespace EWYRYV_HFT_202223.Client
             } while (isOk == false);
             Init(baseurl);
         }
+       
 
         private bool Ping(string url)
         {
