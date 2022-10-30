@@ -138,9 +138,9 @@ namespace MovieDbApp.Client
                 Console.Write($"New name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
                 Console.Write($"New Nationality [old: {one.Nationality}]: ");
-                string nationality = Console.ReadLine();
+                string? nationality = Console.ReadLine();
                 Console.Write($"New Team ID [old: {one.TeamId}]: ");
-                int teamId = int.Parse(Console.ReadLine());
+                int? teamId = int.Parse(Console.ReadLine());
 
                 one.Name = name;
                 one.Nationality = nationality;
@@ -162,6 +162,14 @@ namespace MovieDbApp.Client
                 Player one = rest.Get<Player>(id, "actor");
                 Console.Write($"New name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
+                Console.Write($"New name [old: {one.TeamId}]: ");
+                int teamId = int.Parse(Console.ReadLine());
+                Console.Write($"New name [old: {one.KitNumber}]: ");
+                int? kitNumber = int.Parse(Console.ReadLine());
+                Console.Write($"New name [old: {one.BirthDate}]: ");
+                string? birthDate = Console.ReadLine();
+                Console.Write($"New name [old: {one.Value}]: ");
+                int? value = int.Parse(Console.ReadLine());
                 one.Name = name;
                 rest.Put(one, "player");
             }

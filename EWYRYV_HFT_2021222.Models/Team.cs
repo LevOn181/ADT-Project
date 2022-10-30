@@ -13,6 +13,7 @@ namespace EWYRYV_HFT_202223.Models
     {
 
         [Key]
+        [Range(1,20)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TeamId { get; set; }
         

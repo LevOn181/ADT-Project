@@ -20,10 +20,10 @@ namespace EWYRYV_HFT_202223.Models
         [Range(1, 99)]
         public int? KitNumber { get; set; }
 
-        [Required]
-        [Range(1, 12)]
+
+        [Range(1, 20)]
         [ForeignKey(nameof(Team))]
-        public int TeamId { get; set; }
+        public int?TeamId { get; set; }
 
         [Required]
         [StringLength(240)]
