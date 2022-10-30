@@ -10,10 +10,51 @@ namespace MovieDbApp.Client
     internal class Program
     {
         static RestService rest;
-        
+        static void Create(string entity)
+        {
+            Console.WriteLine("Enter the following parameter(s): ");
+            if (entity == "Manager")
+            {
+                Manager mg = new Manager();
+                Console.Write(" Name: ");
+                string name = Console.ReadLine();
+                Console.Write(" Nationality: ");
+                string? nationality = Console.ReadLine();
+                Console.Write(" Team ID: ");
+                int? teamId = int.Parse(Console.ReadLine());
+
+                rest.Post(new Manager() { Name = name, Nationality = nationality, TeamId = teamId }, "manager");
+            }
+
+            else if (entity == "Player")
+            {
+                Console.Write(" Name: ");
+                string name = Console.ReadLine();
+                Console.Write(" Team ID: ");
+                int teamId = int.Parse(Console.ReadLine());
+                Console.Write(" Birth Date: ");
+                string? birthDate = Console.ReadLine();
+                Console.Write(" Kit Number: ");
+                int? kitNumber = int.Parse(Console.ReadLine());
+                Console.Write(" Value: ");
+                int? value = int.Parse(Console.ReadLine());
+                rest.Post(new Player() { Name = name, TeamId = teamId, BirthDate = birthDate, KitNumber = kitNumber, Value = value }, "player");
+                
+            }else if(entity == "Team")
+            {
+                Console.Write(" Name: ");
+                string name = Console.ReadLine();
+
+                rest.Post(new Team() { Name = name }, "team");
+            }
+            Console.WriteLine(entity + "added succesfully!");
+            Console.WriteLine("Press ENTER to continue...");
+            Console.ReadLine();
+        }
 
         static void List(string entity)
         {
+            Console.WriteLine("List of "+entity+"'s containd by the database: ");
             List<Manager> managers = rest.Get<Manager>("manager");
             List<Team> teams = rest.Get<Team>("team");
             List<Player> players = rest.Get<Player>("player");
@@ -54,7 +95,8 @@ namespace MovieDbApp.Client
             {
                 foreach (var item in players)
                 {
-                    Console.Write("ID: " + item.PlayerId + " | Name:" + item.Name + " |");
+                    Console.Write("ID: " + item.PlayerId + " | Name:" + item.Name + " |" + " TeamID: " + item.TeamId+ " |" );
+                    
                     if(item.KitNumber != null)
                     {
                         Console.Write(" Birth date: " + item.BirthDate +" |");
@@ -80,6 +122,7 @@ namespace MovieDbApp.Client
                         Console.Write(" Value: null");
                     }
                     Console.WriteLine();
+                   
                 }
                 Console.WriteLine("Press ENTER to continue...");
             }
@@ -87,19 +130,25 @@ namespace MovieDbApp.Client
         }
         static void Update(string entity)
         {
+            Console.WriteLine("Enter "+entity+"'s id to update: ");
             if (entity == "Manager")
             {
-                Console.Write("Enter Manager's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Manager one = rest.Get<Manager>(id, "manager");
                 Console.Write($"New name [old: {one.Name}]: ");
                 string name = Console.ReadLine();
+                Console.Write($"New Nationality [old: {one.Nationality}]: ");
+                string nationality = Console.ReadLine();
+                Console.Write($"New Team ID [old: {one.TeamId}]: ");
+                int teamId = int.Parse(Console.ReadLine());
+
                 one.Name = name;
+                one.Nationality = nationality;
+                one.TeamId = teamId;
                 rest.Put(one, "manager");
             }
             else if (entity == "Team")
             {
-                Console.Write("Enter Team's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Team one = rest.Get<Team>(id, "team");
                 Console.Write($"New name [old: {one.Name}]: ");
@@ -109,7 +158,6 @@ namespace MovieDbApp.Client
             }
             else if (entity == "Player")
             {
-                Console.Write("Enter Manager's id to update: ");
                 int id = int.Parse(Console.ReadLine());
                 Player one = rest.Get<Player>(id, "actor");
                 Console.Write($"New name [old: {one.Name}]: ");
@@ -117,27 +165,32 @@ namespace MovieDbApp.Client
                 one.Name = name;
                 rest.Put(one, "player");
             }
+            Console.WriteLine(entity + " Successfully Updated!");
+            Console.WriteLine("Press ENTER to continue...");
+            Console.ReadLine();
         }
         static void Delete(string entity)
         {
+            Console.Write("Enter" + entity + "'s id to delete: ");
             if (entity == "Manager")
             {
-                Console.Write("Enter Manager's id to delete: ");
+                
                 int id = int.Parse(Console.ReadLine());
-                rest.Delete(id, "actor");
+                rest.Delete(id, "manager");
             }
             else if (entity == "Team")
             {
-                Console.Write("Enter Team's id to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "team");
             }
             else if (entity == "Player")
             {
-                Console.Write("Enter Players's id to delete: ");
                 int id = int.Parse(Console.ReadLine());
                 rest.Delete(id, "player");
             }
+            Console.WriteLine(entity + " Successfully Deleted!");
+            Console.WriteLine("Press ENTER to continue...");
+            Console.ReadLine();
         }
 
         static void Main(string[] args)
@@ -146,24 +199,24 @@ namespace MovieDbApp.Client
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Manager"))
-                //.Add("Create", () => Create("Manager"))
+                .Add("Create", () => Create("Manager"))
                 .Add("Delete", () => Delete("Manager"))
                 .Add("Update", () => Update("Manager"))
-                .Add("Exit", ConsoleMenu.Close);
+                .Add("Main Menu", ConsoleMenu.Close);
 
             var teamSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Team"))
-                //.Add("Create", () => Create("Team"))
+                .Add("Create", () => Create("Team"))
                 .Add("Delete", () => Delete("Team"))
                 .Add("Update", () => Update("Team"))
-                .Add("Exit", ConsoleMenu.Close);
+                .Add("Main Menu", ConsoleMenu.Close);
 
             var playerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("List", () => List("Player"))
-                //.Add("Create", () => Create("Player"))
+                .Add("Create", () => Create("Player"))
                 .Add("Delete", () => Delete("Player"))
                 .Add("Update", () => Update("Player"))
-                .Add("Exit", ConsoleMenu.Close);
+                .Add("Main Menu", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)
                 .Add("Managers", () => managerSubMenu.Show())

@@ -28,8 +28,6 @@ namespace EWYRYV_HFT_202223.Models
         [Required]
         [StringLength(240)]
         public string Name { get; set; }
-
-        public int? RoleId { get; set; }
         public string? BirthDate { get; set; }
         public int? Value { get; set; }
 
@@ -48,7 +46,6 @@ namespace EWYRYV_HFT_202223.Models
             PlayerId = int.Parse(split[0]);
             KitNumber = int.Parse(split[1]);
             TeamId = int.Parse(split[2]);
-            RoleId = int.Parse(split[3]);
             Name = split[4];
             BirthDate = split[5];
             Value = int.Parse(split[6]);
