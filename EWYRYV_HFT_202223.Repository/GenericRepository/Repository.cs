@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EWYRYV_HFT_202223.Repository
@@ -17,6 +18,7 @@ namespace EWYRYV_HFT_202223.Repository
         {
             ctx.Set<T>().Add(item);
             ctx.SaveChanges();
+              
         }
 
         public IQueryable<T> ReadAll()

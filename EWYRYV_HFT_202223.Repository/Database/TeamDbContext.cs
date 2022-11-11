@@ -10,8 +10,8 @@ namespace EWYRYV_HFT_202223.Repository
 {
     public class TeamDbContext : DbContext
     {
-        public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Player> Players { get; set; }
 
 
@@ -31,26 +31,38 @@ namespace EWYRYV_HFT_202223.Repository
             {
                 builder
                     .UseLazyLoadingProxies()
-                    .UseInMemoryDatabase("team");
+                    .UseInMemoryDatabase("teams");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             modelBuilder.Entity<Team>(entity =>
             {
                 entity.HasMany(team => team.Players)
                     .WithOne(player => player.Team)
-                    .HasForeignKey(player => player.TeamId)
-                    .OnDelete(DeleteBehavior.ClientSetNull);
+                    .HasForeignKey(player => player.TeamId);
+                //.OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.HasOne(team => team.Manager)
+                    .WithOne(manager => manager.Team)
+                    .HasForeignKey<Manager>(manager => manager.TeamId);
+            });
+
+            modelBuilder.Entity<Player>(entity =>
+            {
+                entity.HasOne(player => player.Team)
+                    .WithMany(team => team.Players)
+                    .HasForeignKey(player => player.TeamId);
             });
 
             modelBuilder.Entity<Manager>(entity =>
             {
                 entity.HasOne(manager => manager.Team)
-                    .WithOne(team => team.Manager)
-                    .HasForeignKey<Team>(manager => manager.TeamId);
-                    //.OnDelete(DeleteBehavior.ClientSetNull);
+                    .WithOne(team => team.Manager);
+                //.HasForeignKey(manager => manager.TeamId);
+                //.OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<Manager>().HasData(new Manager[]
@@ -392,19 +404,20 @@ namespace EWYRYV_HFT_202223.Repository
             });
             modelBuilder.Entity<Team>().HasData(new Team[]
             {
-                new Team("1#Vasas FC"),
-                new Team("2#Ferencvárosi TC"),
-                new Team("3#Puskás Akadémia FC"),
-                new Team("4#Debreceni VSC"),
-                new Team("5#Budapest Honvéd FC"),
-                new Team("6#Szombathelyi Haladás"),
-                new Team("7#Paksi FC"),
-                new Team("8#Mezőkövesd Zsóry FC"),
-                new Team("9#Diósgyőri VTK"),
-                new Team("10#Újpest FC"),
-                new Team("11#Balmazújváros FC"),
-                new Team("12#Videoton FC"),
+                new Team("1#Vasas FC#1911"),
+                new Team("2#Ferencvárosi TC#1899"),
+                new Team("3#Puskás Akadémia FC#2012"),
+                new Team("4#Debreceni VSC#1902"),
+                new Team("5#Budapest Honvéd FC#1909"),
+                new Team("6#Szombathelyi Haladás#1919"),
+                new Team("7#Paksi FC#1952"),
+                new Team("8#Mezőkövesd Zsóry FC#1975"),
+                new Team("9#Diósgyőri VTK#1910"),
+                new Team("10#Újpest FC#1885"),
+                new Team("11#Balmazújváros FC#2011"),
+                new Team("12#Videoton FC#1941"),
             });
+
         }
     }
 }

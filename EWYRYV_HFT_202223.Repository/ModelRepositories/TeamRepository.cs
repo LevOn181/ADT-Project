@@ -20,11 +20,8 @@ namespace EWYRYV_HFT_202223.Repository
 
         public override void Update(Team item)
         {
-            var old = Read(item.TeamId);
-            foreach (var prop in old.GetType().GetProperties())
-            {
-                prop.SetValue(old, prop.GetValue(item));
-            }
+            var updated = Read(item.TeamId);
+            updated.Name = item.Name;
             ctx.SaveChanges();
         }
     }

@@ -23,7 +23,7 @@ namespace EWYRYV_HFT_202223.Models
 
         [Range(1, 20)]
         [ForeignKey(nameof(Team))]
-        public int?TeamId { get; set; }
+        public int? TeamId { get; set; }
 
         [Required]
         [StringLength(240)]
@@ -32,7 +32,7 @@ namespace EWYRYV_HFT_202223.Models
         public int? Value { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Team Team { get; set; }
 
         public Player()

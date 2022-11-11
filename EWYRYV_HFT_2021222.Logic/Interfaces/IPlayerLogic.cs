@@ -19,5 +19,7 @@ namespace EWYRYV_HFT_202223.Logic
         // OTHER
         double? GetAveragePrice();
         int GetAverageAge();
+
+
     }
 }

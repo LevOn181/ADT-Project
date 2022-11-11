@@ -14,7 +14,7 @@ namespace EWYRYV_HFT_202223.Client
 
         public RestService(string baseurl)
         {
-            Init(baseurl);
+           Init(baseurl);
         }
 
         
@@ -114,7 +114,6 @@ namespace EWYRYV_HFT_202223.Client
         {
             HttpResponseMessage response =
                 client.PostAsJsonAsync(endpoint, item).GetAwaiter().GetResult();
-
             if (!response.IsSuccessStatusCode)
             {
                 var error = response.Content.ReadAsAsync<RestExceptionInfo>().GetAwaiter().GetResult();

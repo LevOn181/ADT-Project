@@ -1,4 +1,5 @@
 ﻿using EWYRYV_HFT_202223.Models;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace EWYRYV_HFT_202223.Logic
@@ -10,5 +11,10 @@ namespace EWYRYV_HFT_202223.Logic
         Team Read(int id);
         IQueryable<Team> ReadAll();
         void Update(Team item);
+        public IEnumerable<object> CountPlayers();
+        public IEnumerable<object> TeamValue();
+        public IEnumerable<object> MostValuable();
+        public IEnumerable<object> HungarianManagers();
+        public IEnumerable<object> TopPlayerData();
     }
 }
