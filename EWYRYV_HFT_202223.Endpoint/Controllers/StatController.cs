@@ -12,40 +12,44 @@ namespace EWYRYV_HFT_202223.Endpoint.Controllers
     [ApiController]
     public class StatController : ControllerBase
     {
-        ITeamLogic teamlogic;
-        public StatController(ITeamLogic logic)
+        ITeamLogic teamLogic;
+        IManagerLogic managerLogic;
+        IPlayerLogic playerLogic;
+        public StatController(ITeamLogic tlogic, IPlayerLogic plogic, IManagerLogic mlogic)
         {
-            this.teamlogic = logic;
+            this.teamLogic = tlogic;
+            this.managerLogic = mlogic;
+            this.playerLogic = plogic;
         }
 
         [HttpGet]
         public IEnumerable<object?> countPlayers()
         {
-           return this.teamlogic.CountPlayers();
+           return this.playerLogic.CountPlayers();
         }
 
         [HttpGet]
         public IEnumerable<object> teamValue()
         {
-            return this.teamlogic.TeamValue();
+            return this.playerLogic.TeamValue();
         }
 
         [HttpGet]
         public IEnumerable<object> mostValuable()
         {
-            return this.teamlogic.MostValuable();
+            return this.playerLogic.MostValuable();
         }
 
         [HttpGet]
         public IEnumerable<object> hungarianManagers()
         {
-            return this.teamlogic.HungarianManagers();
+            return this.teamLogic.HungarianManagers();
         }
 
         [HttpGet]
         public IEnumerable<object>topPlayerData()
         {
-            return this.teamlogic.TopPlayerData();
+            return this.managerLogic.TopPlayerData();
         }
     }
 }

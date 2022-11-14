@@ -17,9 +17,9 @@ namespace EWYRYV_HFT_202223.Logic
         void Update(Player item);
 
         // OTHER
-        double? GetAveragePrice();
-        int GetAverageAge();
-
+        public IEnumerable<object> CountPlayers();
+        public IEnumerable<object> TeamValue();
+        public IEnumerable<object> MostValuable();
 
     }
 }

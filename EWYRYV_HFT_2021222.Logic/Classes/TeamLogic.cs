@@ -10,29 +10,43 @@ namespace EWYRYV_HFT_202223.Logic
     {
 
         IRepository<Team> teamRepo;
-        IRepository<Manager> managerRepo;
-        IRepository<Player> playerRepo;
 
-        public TeamLogic(IRepository<Team> repot, IRepository<Player> repop, IRepository<Manager> repom)
+        public TeamLogic(IRepository<Team> repo)
         {
-            this.teamRepo = repot;
-            this.managerRepo = repom;
-            this.playerRepo = repop;
+            this.teamRepo = repo;
         }
 
         public void Create(Team item)
         {
+            if (item.Name == null)
+            {
+                throw new NullReferenceException("Team's name cannot be null!");
+            }
+            if(item.FoundationYear < 1800 || item.FoundationYear > 2022)
+            {
+                throw new ArgumentOutOfRangeException("The year of fundation must be between 1800 and 2022");
+            }
             this.teamRepo.Create(item);
         }
 
         public void Delete(int id)
         {
+            var team = this.teamRepo.Read(id);
+            if (team == null)
+            {
+                throw new ArgumentException("Team not exists!");
+            }
             this.teamRepo.Delete(id);
         }
 
         public Team Read(int id)
         {
-            return this.teamRepo.Read(id);
+            var team = this.teamRepo.Read(id);
+            if (team == null)
+            {
+                throw new ArgumentException("Team not exists!");
+            }
+            return team;
         }
 
         public IQueryable<Team> ReadAll()
@@ -42,49 +56,16 @@ namespace EWYRYV_HFT_202223.Logic
 
         public void Update(Team item)
         {
+            if (item.Name == null)
+            {
+                throw new NullReferenceException("Team's name cannot be null");
+            }
+            if (item.FoundationYear < 1800 || item.FoundationYear > 2022)
+            {
+                throw new ArgumentOutOfRangeException("The year of fundation must be between 1800 and 2022");
+            }
             this.teamRepo.Update(item);
         }
-
-        public IEnumerable<object> CountPlayers()
-        {
-            var data = from x in playerRepo.ReadAll()
-                       group x by x.Team.Name into g
-                       orderby g.Count() descending
-                       select new
-                       {
-                           TeamName = g.Key,
-                           PlayerCount = g.Count(),
-                       };
-
-            return data;
-        }
-        public IEnumerable<object> TeamValue()
-        {
-            var data = from x in playerRepo.ReadAll()
-                       group x by x.Team.Name into g
-                       orderby g.Sum(t => t.Value) descending
-                       select new
-                       {
-                           TeamName = g.Key,
-                           TeamValue = g.Sum(t => t.Value),
-                       };
-
-            return data;
-        }
-
-        public IEnumerable<object> MostValuable()
-        {
-
-            var data = from x in playerRepo.ReadAll()
-                       where x.Value.Equals(playerRepo.ReadAll().Max(t => t.Value))
-                       select new
-                       {
-                           PlayerName = x.Name,
-                           ManagerName = x.Team.Manager.Name
-                       };
-            return data;
-        }
-
         public IEnumerable<object> HungarianManagers()
         {
             var data = from x in teamRepo.ReadAll()
@@ -93,16 +74,5 @@ namespace EWYRYV_HFT_202223.Logic
             return data;
         }
 
-        public IEnumerable<object> TopPlayerData()
-        {
-            var data = from x in managerRepo.ReadAll()
-                       select new
-                       {
-                           ManagerName = x.Name,
-                           TeamName = x.Team.Name,
-                           PlayerName = x.Team.Players.OrderByDescending(t => t.Value).First().Name,
-                       };
-            return data;
-        }
     }
 }

@@ -252,7 +252,7 @@ namespace TeamDbApp.Client
         }
         static void TopPlayerData(string endpoint)
         {
-            Console.WriteLine("Teams' most valuable player and manager");
+            Console.WriteLine("Teams' most valuable player and its manager");
             var data = rest.Get<object>(endpoint);
             foreach (var item in data)
             {

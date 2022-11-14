@@ -14,6 +14,7 @@ namespace EWYRYV_HFT_202223.Logic
         Manager Read(int id);
         IQueryable<Manager> ReadAll();
         void Update(Manager item);
+        public IEnumerable<object> TopPlayerData();
     }
 }
 

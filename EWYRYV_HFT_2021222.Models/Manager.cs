@@ -23,7 +23,6 @@ namespace EWYRYV_HFT_202223.Models
         public string? Nationality { get; set; }
 
         [ForeignKey(nameof(Team))]
-        [Range(1, 20)]
         public int? TeamId { get; set; }
 
         [NotMapped]
