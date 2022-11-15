@@ -70,7 +70,7 @@ namespace EWYRYV_HFT_202223.Logic
         {
             var data = from x in managerRepo.ReadAll()
                        select new
-                       {
+                       { 
                            ManagerName = x.Name,
                            TeamName = x.Team.Name,
                            PlayerName = x.Team.Players.OrderByDescending(t => t.Value).First().Name,
