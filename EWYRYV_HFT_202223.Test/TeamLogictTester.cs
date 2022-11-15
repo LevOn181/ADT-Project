@@ -267,7 +267,6 @@ namespace EWYRYV_HFT_202223.Test
         [Test]
         public void HungarianManagersTest()
         {
-            ;
             var result = teamLogic.HungarianManagers().ToList();
             var expected = new List<object>()
             {
@@ -277,6 +276,19 @@ namespace EWYRYV_HFT_202223.Test
             Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
         }
 
+        [Test]
+        public void TopPlayerDataTest()
+        {
+            var result = managerLogic.TopPlayerData().ToList();
+            var expected = new List<object>()
+            {
+                new { ManagerName = "Test Manager0", TeamName = "Test0 FC", PlayerName = "Test Player3" },
+                new { ManagerName = "Test Manager1", TeamName = "Test1 SC", PlayerName = "Test Player4" },
+                new { ManagerName = "Test Manager2", TeamName = "Test2 AC", PlayerName = "Test Player9" },
+            };
+
+            Assert.That(result.ToString, Is.EqualTo(expected.ToString()));
+        }
 
 
 
