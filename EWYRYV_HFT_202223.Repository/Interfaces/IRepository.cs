@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace EWYRYV_HFT_202223.Repository
 {
 	public interface IRepository<T> where T : class
-	{
+	{ 
 		IQueryable<T> ReadAll();
 		T Read(int id);
 		void Create(T item);

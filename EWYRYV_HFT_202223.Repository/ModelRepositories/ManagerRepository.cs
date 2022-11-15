@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EWYRYV_HFT_202223.Repository
 {
     public class ManagerRepository : Repository<Manager>, IRepository<Manager>
-    {
+    { 
         public ManagerRepository(TeamDbContext ctx) : base(ctx)
         {
 

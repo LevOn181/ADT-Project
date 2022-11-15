@@ -8,7 +8,7 @@ using EWYRYV_HFT_202223.Models;
 namespace EWYRYV_HFT_202223.Repository
 {
     public class PlayerRepository : Repository<Player>, IRepository<Player>
-    {
+    { 
         public PlayerRepository(TeamDbContext ctx) : base(ctx)
         {
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EWYRYV_HFT_202223.Repository
 {
     public class TeamDbContext : DbContext
-    {
+    { 
         public virtual DbSet<Team> Teams { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Player> Players { get; set; }
