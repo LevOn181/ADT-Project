@@ -46,7 +46,7 @@ namespace EWYRYV_HFT_202223.Logic
             var manager = this.playerRepo.Read(id);
             if (manager == null)
             {
-                throw new ArgumentException("Player not exists");
+                throw new ArgumentException("Player not exists!");
             }
             return manager;
         }
@@ -60,11 +60,11 @@ namespace EWYRYV_HFT_202223.Logic
         {
             if (item == null)
             {
-                throw new NullReferenceException("Manger not exist");
+                throw new NullReferenceException("Player not exists!");
             }
             else if (item.Name == null)
             {
-                throw new NullReferenceException("Manager name connot be null");
+                throw new NullReferenceException("Player's name cannot be null");
             }
             this.playerRepo.Update(item);
         }

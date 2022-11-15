@@ -88,7 +88,7 @@ namespace TeamDbApp.Client
             {   
                 foreach (var item in teams)
                 {
-                    Console.WriteLine("ID: " + item.TeamId + " | Name: " + item.Name);
+                    Console.WriteLine("ID: " + item.TeamId + " | Name: " + item.Name + " | Year Of Foundation: " + item.FoundationYear);
                 }
                 Console.WriteLine("Press ENTER to continue...");
             }
@@ -128,6 +128,75 @@ namespace TeamDbApp.Client
                 }
                 Console.WriteLine("Press ENTER to continue...");
             }
+            Console.ReadLine();
+        }
+        static void Read(string entity)
+        {
+            if (entity == "Manager")
+            {
+                Console.Write($"ID of requested {entity}: ");
+                int id = int.Parse(Console.ReadLine());
+                Manager item = rest.Get<Manager>(id, entity.ToLower());
+                Console.Write("ID: " + item.ManagerId + " | Name: " + item.Name);
+                if (item.Nationality != null)
+                {
+                    Console.Write(" | Nationality: " + item.Nationality);
+                }
+                else
+                {
+                    Console.Write(" | Nationality = null");
+                }
+                if (item.TeamId != null)
+                {
+                    Console.Write(" | Managed Team ID: " + item.TeamId);
+                }
+                else
+                {
+                    Console.Write(" | Managed Team ID: null");
+                }
+                Console.WriteLine();
+            }
+            else if(entity == "Player")
+            {
+                Console.Write($"ID of requested {entity}: ");
+                int id = int.Parse(Console.ReadLine());
+                Player item = rest.Get<Player>(id, entity.ToLower());
+                Console.Write("ID: " + item.PlayerId + " | Name:" + item.Name + " |" + " TeamID: " + item.TeamId + " |");
+
+                if (item.KitNumber != null)
+                {
+                    Console.Write(" Birth date: " + item.BirthDate + " |");
+                }
+                else
+                {
+                    Console.Write(" Birth date: null |");
+                }
+                if (item.KitNumber != null)
+                {
+                    Console.Write(" Kit Number: " + item.KitNumber + " |");
+                }
+                else
+                {
+                    Console.Write(" Kit number: null |");
+                }
+                if (item.KitNumber != null)
+                {
+                    Console.Write(" Value: " + item.Value);
+                }
+                else
+                {
+                    Console.Write(" Value: null");
+                }
+                Console.WriteLine();
+            }
+            else if(entity == "Team")
+            {
+                Console.Write($"ID of requested {entity}: ");
+                int id = int.Parse(Console.ReadLine());
+                Team item = rest.Get<Team>(id, entity.ToLower());
+                Console.WriteLine("ID: " + item.TeamId + " | Name: " + item.Name);
+            }
+            Console.WriteLine("Press ENTER to continue...");
             Console.ReadLine();
         }
         static void Update(string entity)
@@ -266,6 +335,7 @@ namespace TeamDbApp.Client
             rest = new RestService("http://localhost:5000/");
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Read By ID", () => Read("Manager"))
                 .Add("List", () => List("Manager"))
                 .Add("Create", () => Create("Manager"))
                 .Add("Delete", () => Delete("Manager"))
@@ -273,6 +343,7 @@ namespace TeamDbApp.Client
                 .Add("Main Menu", ConsoleMenu.Close);
 
             var teamSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Read By ID", () => Read("Team"))
                 .Add("List", () => List("Team"))
                 .Add("Create", () => Create("Team"))
                 .Add("Delete", () => Delete("Team"))
@@ -280,6 +351,7 @@ namespace TeamDbApp.Client
                 .Add("Main Menu", ConsoleMenu.Close);
 
             var playerSubMenu = new ConsoleMenu(args, level: 1)
+                .Add("Read By ID", () => Read("Player"))
                 .Add("List", () => List("Player"))
                 .Add("Create", () => Create("Player"))
                 .Add("Delete", () => Delete("Player"))
