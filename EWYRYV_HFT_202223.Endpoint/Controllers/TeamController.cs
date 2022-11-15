@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace EWYRYV_HFT_202223.Endpoint.Controllers
 {
     [Route("[controller]")]
-    [ApiController]
+    [ApiController] 
     public class TeamController : ControllerBase
     {
         ITeamLogic logic;
