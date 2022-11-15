@@ -332,7 +332,7 @@ namespace TeamDbApp.Client
         }
         static void Main(string[] args)
         {
-            rest = new RestService("http://localhost:5000/");
+            rest = new RestService("http://localhost:15885");
 
             var managerSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("Read By ID", () => Read("Manager"))
