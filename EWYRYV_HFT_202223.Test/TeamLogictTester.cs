@@ -28,39 +28,6 @@ namespace EWYRYV_HFT_202223.Test
             mockManagerRepo = new Mock<IRepository<Manager>>();
             mockPlayerRepo = new Mock<IRepository<Player>>();
 
-            /*
-            mockPlayerRepo.Setup(p => p.ReadAll()).Returns(new List<Player>()
-            {
-                new Player("1#11#1#Test Player0#1991.01.11#100"),
-                new Player("2#16#1#Test Player1#1987.12.24#200"),
-                new Player("3#23#1#Test Player2#1996.06.12#300"),
-                new Player("4#2#1#Test Player3#1996.11.01#400"),
-
-                new Player("5#1#2#Test Player4#2001.09.11#500"),
-                new Player("6#4#2#Test Player5#1981.08.09#400"),
-                new Player("7#5#2#Test Player6#1997.07.21#300"),
-                new Player("8#10#2#Test Player7#1985.12.01#200"),
-
-                new Player("9#69#3#Test Player8#2004.03.21#300"),
-                new Player("10#99#3#Test Player9#1999.04.14#600"),
-                new Player("11#13#3#Test Player10#1979.02.11#100"),
-                new Player("12#22#3#Test Player11#1986.01.01#50"),
-            }.AsQueryable());
-            mockTeamRepo.Setup(t => t.ReadAll()).Returns(new List<Team>()
-            {
-                new Team("1#Test0 FC#2000"),
-                new Team("2#Test1 SC#1950"),
-                new Team("3#Test2 AC#1880"),
-            }.AsQueryable());
-            mockManagerRepo.Setup(m => m.ReadAll()).Returns(new List<Manager>() 
-            { 
-                new Manager("1#Test Manager0#USA#1"),
-                new Manager("2#Test Manager1#hungarian#2"),
-                new Manager("3#Test Manager2#UK#3"),
-            }.AsQueryable());
-            */
-            
-
             var players1 = new List<Player>()
             {
                 new Player("1#11#1#Test Player0#1991.01.11#100"),
@@ -180,6 +147,7 @@ namespace EWYRYV_HFT_202223.Test
         }
 
         #region CRUD
+
         //CRUD tests
         // ----> Create Test(s)
         [Test]
@@ -262,8 +230,13 @@ namespace EWYRYV_HFT_202223.Test
             var actual = playerLogic.Read(0);
             Assert.That(actual, Is.EqualTo(expected));
         }
+
         #endregion
+
         #region Non-CRUD
+
+        // Non-CRUD
+        // ----> teamLogic test(s)
         [Test]
         public void HungarianManagersTest()
         {
@@ -276,6 +249,7 @@ namespace EWYRYV_HFT_202223.Test
             Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
         }
 
+        // ----> managerLogic test(s)
         [Test]
         public void TopPlayerDataTest()
         {
@@ -286,13 +260,45 @@ namespace EWYRYV_HFT_202223.Test
                 new { ManagerName = "Test Manager1", TeamName = "Test1 SC", PlayerName = "Test Player4" },
                 new { ManagerName = "Test Manager2", TeamName = "Test2 AC", PlayerName = "Test Player9" },
             };
-
             Assert.That(result.ToString, Is.EqualTo(expected.ToString()));
         }
 
+        // ----> playerLogic test(s)
+        [Test]
+        public void TeamValueTest()
+        {
+            var result = playerLogic.TeamValue().ToList();
+            var expected = new List<object>()
+            {
+                new { TeamName = "Test1 SC", TeamValue = 1400 },
+                new { TeamName = "Test2 AC", TeamValue = 1050 },
+                new { TeamName = "Test0 FC", TeamValue = 1000 },
+            };
+            Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
+        }
+        [Test]
+        public void MostValueableTest()
+        {
+            var result = playerLogic.MostValuable().ToList();
+            var expected = new List<object>()
+            {
+                new { PlayerName = "Test Player9", ManagerName = "Test Manager2" },
+            };
+            Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
+        }
+        [Test]
+        public void CountPlayersTest()
+        {
+            var result = playerLogic.CountPlayers().ToList();
+            var expected = new List<object>()
+            {
+                new { TeamName = "Test0 FC", PlayerCount = 4 },
+                new{ TeamName = "Test1 SC", PlayerCount = 4 },
+                new { TeamName = "Test2 AC", PlayerCount = 4 },
+            };
 
-
-
+            Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
+        }
 
         #endregion
     }
