@@ -12,7 +12,7 @@ namespace EWYRYV_HFT_202223.Models
 {
     [Table("player")]
     public class Player
-    {
+    { 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PlayerId { get; set; }

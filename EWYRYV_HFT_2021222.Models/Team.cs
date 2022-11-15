@@ -26,7 +26,6 @@ namespace EWYRYV_HFT_202223.Models
         public int? FoundationYear { get; set; }
         
         [NotMapped]
-        //[JsonIgnore]
         public virtual ICollection<Player> Players { get; set; }
 
         [NotMapped]
