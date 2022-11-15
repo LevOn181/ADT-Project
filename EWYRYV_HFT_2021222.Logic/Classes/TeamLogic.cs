@@ -69,7 +69,7 @@ namespace EWYRYV_HFT_202223.Logic
         public IEnumerable<object> HungarianManagers()
         {
             var data = from x in teamRepo.ReadAll()
-                       where x.Manager.Nationality.ToLower().Equals("hungarian") || x.Manager.Nationality.ToLower().Equals("hungary")
+                       where x.Manager.Nationality.ToLower().Equals("hungarian") || x.Manager.Nationality.ToLower().Equals("hungary") || x.Manager.Nationality.ToLower().Equals("hu")
                        select new { teamName = x.Name, ManagerName = x.Manager.Name };
             return data;
         }

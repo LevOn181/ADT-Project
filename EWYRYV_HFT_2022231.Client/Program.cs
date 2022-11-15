@@ -361,9 +361,9 @@ namespace TeamDbApp.Client
             var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
                 .Add("Count of players in teams: ", () => CountPlayers("stat/countPlayers"))
                 .Add("Value of players in teams: ", () => TeamValue("stat/teamValue"))
-                .Add("The most valuable player: ", () => MostValuable("stat/mostValuable"))
+                .Add("The most valuable player in database: ", () => MostValuable("stat/mostValuable"))
                 .Add("Teams with Hungarian manager: ", () => HungarianManagers("stat/hungarianManagers"))
-                .Add("Top player per teams", () => TopPlayerData("stat/topPlayerData"))
+                .Add("Most valuable player in each teams", () => TopPlayerData("stat/topPlayerData"))
                 .Add("Main Menu", ConsoleMenu.Close);
 
             var menu = new ConsoleMenu(args, level: 0)

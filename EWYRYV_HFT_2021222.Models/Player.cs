@@ -30,6 +30,7 @@ namespace EWYRYV_HFT_202223.Models
         public int? Value { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Team Team { get; set; }
 
         public Player()

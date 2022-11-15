@@ -26,7 +26,7 @@ namespace EWYRYV_HFT_202223.Models
         public int? TeamId { get; set; }
 
         [NotMapped]
-        [JsonIgnore]
+        //[JsonIgnore]
         public virtual Team Team { get; set; }
 
         public Manager()
