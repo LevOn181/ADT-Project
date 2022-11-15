@@ -264,7 +264,19 @@ namespace EWYRYV_HFT_202223.Test
         }
         #endregion
         #region Non-CRUD
-        
+        [Test]
+        public void HungarianManagersTest()
+        {
+            ;
+            var result = teamLogic.HungarianManagers().ToList();
+            var expected = new List<object>()
+            {
+                new { TeamName = "Test1 SC", ManagerName = "Test Manager1"}
+            };
+
+            Assert.That(result.ToString(), Is.EqualTo(expected.ToString()));
+        }
+
 
 
 
