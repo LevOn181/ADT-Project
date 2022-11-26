@@ -24,7 +24,7 @@ namespace EWYRYV_HFT_202223.Logic
             }
             if(item.FoundationYear < 1800 || item.FoundationYear > 2022)
             {
-                throw new ArgumentOutOfRangeException("The year of fundation must be between 1800 and 2022");
+                throw new ArgumentOutOfRangeException("The year of foundation must be between 1800 and 2022!");
             }
             this.teamRepo.Create(item);
         }
@@ -34,7 +34,7 @@ namespace EWYRYV_HFT_202223.Logic
             var team = this.teamRepo.Read(id);
             if (team == null)
             {
-                throw new ArgumentException("Team not exists!");
+                throw new ArgumentException("Team doesn't exist!");
             }
             this.teamRepo.Delete(id);
         }
@@ -44,7 +44,7 @@ namespace EWYRYV_HFT_202223.Logic
             var team = this.teamRepo.Read(id);
             if (team == null)
             {
-                throw new ArgumentException("Team not exists!");
+                throw new ArgumentException("Team doesn't exist!");
             }
             return team;
         }
@@ -58,11 +58,11 @@ namespace EWYRYV_HFT_202223.Logic
         {
             if (item.Name == null)
             {
-                throw new NullReferenceException("Team's name cannot be null");
+                throw new NullReferenceException("Team's name cannot be null!");
             }
             if (item.FoundationYear < 1800 || item.FoundationYear > 2022)
             {
-                throw new ArgumentOutOfRangeException("The year of fundation must be between 1800 and 2022");
+                throw new ArgumentOutOfRangeException("The year of foundation must be between 1800 and 2022!");
             }
             this.teamRepo.Update(item);
         }

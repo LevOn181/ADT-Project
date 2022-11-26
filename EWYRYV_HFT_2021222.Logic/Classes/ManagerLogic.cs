@@ -19,7 +19,7 @@ namespace EWYRYV_HFT_202223.Logic
         {
             if(item.Name == null)
             {
-                throw new ArgumentNullException("Manager Name cannot be null!");
+                throw new ArgumentNullException("Manager's Name cannot be null!");
             }
             else if(item.TeamId<1)
             {
@@ -33,7 +33,7 @@ namespace EWYRYV_HFT_202223.Logic
             var manager = this.managerRepo.Read(id);
             if(manager == null)
             {
-                throw new ArgumentException("Manager not exists!");
+                throw new ArgumentException("Manager doesn't exist!");
             }
             this.managerRepo.Delete(id);
         }
@@ -57,11 +57,11 @@ namespace EWYRYV_HFT_202223.Logic
         {
             if (item == null)
             {
-                throw new NullReferenceException("Manger not exist");
+                throw new NullReferenceException("Manger doesn't exist!");
             }
             else if(item.Name == null)
             {
-                throw new NullReferenceException("Manager name connot be null");
+                throw new NullReferenceException("Manager's name cannot be null!");
             }
             this.managerRepo.Update(item);
         }

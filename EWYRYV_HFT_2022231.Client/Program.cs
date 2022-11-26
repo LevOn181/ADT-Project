@@ -49,7 +49,7 @@ namespace TeamDbApp.Client
 
                 rest.Post(new Team(name, fundationYear), "team");
             }
-            Console.WriteLine(entity + "added succesfully!");
+            Console.WriteLine(entity + " added succesfully!");
             Console.WriteLine("Press ENTER to continue...");
             Console.ReadLine();
         }
@@ -359,10 +359,10 @@ namespace TeamDbApp.Client
                 .Add("Main Menu", ConsoleMenu.Close);
 
             var nonCrudSubMenu = new ConsoleMenu(args, level: 1)
-                .Add("Count of players in teams: ", () => CountPlayers("stat/countPlayers"))
-                .Add("Total value of players in each teams: ", () => TeamValue("stat/teamValue"))
-                .Add("The most valuable player in database: ", () => MostValuable("stat/mostValuable"))
-                .Add("Teams with Hungarian managers: ", () => HungarianManagers("stat/hungarianManagers"))
+                .Add("Count of players in teams", () => CountPlayers("stat/countPlayers"))
+                .Add("Total value of players in each teams", () => TeamValue("stat/teamValue"))
+                .Add("The most valuable player in database", () => MostValuable("stat/mostValuable"))
+                .Add("Teams with Hungarian managers", () => HungarianManagers("stat/hungarianManagers"))
                 .Add("Most valuable player in each teams", () => TopPlayerData("stat/topPlayerData"))
                 .Add("Main Menu", ConsoleMenu.Close);
 
